@@ -4,7 +4,7 @@ from click import style
 import folium
 import pandas as pd
 
-data = pd.read_csv('/Users/crisd/Documents/Python Practice/Webmap_datasources/Volcanoes.txt')
+data = pd.read_csv('Volcanoes.txt')
 
 lat = list(data['LAT'])
 lon = list(data['LON'])
@@ -30,7 +30,7 @@ for lt, lg, el in zip(lat, lon, elev):
 
 fgp = folium.FeatureGroup(name='Polpulation')
 
-fgp.add_child(folium.GeoJson(data=open('/Users/crisd/Documents/Python Practice/mapping/world.json', 'r', encoding='utf-8-sig').read(), 
+fgp.add_child(folium.GeoJson(data=open('world.json', 'r', encoding='utf-8-sig').read(), 
                             style_function=lambda x: {'fillColor': 'green' if x['properties']['POP2005'] < 10000000 
                             else 'orange' if 10000000 <= x['properties']['POP2005'] < 20000000
                             else 'red'}))
